@@ -15,6 +15,8 @@
 #define TEMP_WAKEPIN  PIN_PC1
 #define TEMP_DONEPIN PIN_PC0
 
+#define PINLED DD0
+
 const long frecuencia = 868E6;    // 868 MHz
 long intervalo = 1000;
 long tiempo = 0;
@@ -40,6 +42,8 @@ void setup() {
   // pinMode(TEMP_WAKEPIN, INPUT);
   pinMode(TEMP_DONEPIN, OUTPUT);
   digitalWrite(TEMP_DONEPIN, LOW);
+
+  pinMode(PINLED, OUTPUT);
 
   // Configuramos la interrupción de control del temporizador
   attachInterrupt(TEMP_WAKEPIN, despertar, FALLING);
@@ -67,6 +71,7 @@ void loop() {
     // print RSSI of packet
     Serial2.print("' with RSSI ");
     Serial2.println(LoRa.packetRssi());
+    digitalWrite(PINLED, !digitalRead(PINLED));
   }
   if(millis() - tiempo >= intervalo){
     tiempo += intervalo;

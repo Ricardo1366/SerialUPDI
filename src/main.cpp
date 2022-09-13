@@ -75,7 +75,7 @@ void loop() {
   }
   if(millis() - tiempo >= intervalo){
     tiempo += intervalo;
-    Serial2.print("Paso "); Serial2.println(tiempo / intervalo);
+    // Serial2.print("Paso "); Serial2.println(tiempo / intervalo);
   }
   if(despierta){
     digitalWrite(TEMP_DONEPIN, HIGH);
